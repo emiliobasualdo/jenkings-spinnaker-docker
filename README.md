@@ -1,5 +1,21 @@
 # jenkings-docker
 
+# requisitos
+- kubernetes cluster
+- load balancer o ingress para entrar el cluster
+
+# setup
+1. instalar con helm : https://github.com/helm/charts/tree/master/stable/jenkins
+$ helm install --name my-release stable/jenkins
+
+2. correr el ingress editando el hos
+$ kubectl apply -f ingress.yml
+
+3. setear el DNS para que derive el host del ingress al load balancer.(DigitalOcean control panel)
+
+4. done
+
+# post instalación aparece esto
 NOTES:
 1. Get your 'admin' user password by running:
   printf $(kubectl get secret --namespace default jenkings-stable-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
